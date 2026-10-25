@@ -844,17 +844,23 @@ static int helm_thrust_start(void *p,u32 held,u32 previous,u32 pressed) {
         if(!current(p))return 0;
         consume_y(p);
         float frame=F32(p,0x500);
-        if(!state.started || state.exiting || !__builtin_isfinite(frame) || frame<0 ||
+        if(state.exiting || !__builtin_isfinite(frame) || frame<0 ||
            !(U8(p,0x2749)&1) || U8(p,0x2505)==2 || (U8(p,0x2515)&4))return 0;
         /* X may still be held; keep both Iai hit windows before the continuation. */
         if((held&0x9d0)==0x810 && (previous&0x810)!=0x810 && (pressed&0x810))state.combo_buffer|=4;
-        if((state.combo_buffer&4) && frame>=36 && !(held&0x80) && !guard.depth){
+        if(state.started && (state.combo_buffer&4) && frame>=36 && !(held&0x80) && !guard.depth){
             small_contact(p);consume_x(p);return helm_thrust_commit(p);
         }
         return 0;
     }
-    /* shortcut: native attack cancels remain gated separately from locomotion. */
-    if((held&0x9f0)!=0x810 || (previous&0x810)==0x810 || !(pressed&0x810) ||
+    if(!(held&0x10))return 0;
+    /* Only the proven native startup may ignore a lingering X or consume Y-first. */
+    int early_attack=(held&0x10) && !state.active && !combo.active && !(U32(p,0x2500)&1) &&
+        attack_scope(p) && U8(p,5)==1 && __builtin_isfinite(F32(p,0x500)) &&
+        F32(p,0x500)>=0 && F32(p,0x500)<=6 && !(U32(p,0x2510)&16) && !(U32(p,0x2514)&2);
+    u32 chord=held;
+    if(early_attack && U8(p,0x2505)!=2 && !(U8(p,0x2515)&4)){consume_y(p);chord&=~0x20u;}
+    if((chord&0x9f0)!=0x810 || (previous&0x810)==0x810 || !(pressed&0x810) ||
        !(U8(p,0x2749)&1) || (U32(p,0x2500)&1) ||
        !__builtin_isfinite(F32(p,0x2534)) || !__builtin_isfinite(F32(p,0x500)) || F32(p,0x500)<0)return 0;
     int owned=current(p);
@@ -863,15 +869,13 @@ static int helm_thrust_start(void *p,u32 held,u32 previous,u32 pressed) {
         (state.slash==1 && !guard.depth && !state.parried && !state.hit_attempted &&
          (!state.started || F32(p,0x500)<=6)));
     int ready=!state.active && !combo.active;
-    int early_attack=attack_scope(p) && U8(p,5)==1 && F32(p,0x500)<=6 &&
-        !(U32(p,0x2510)&16) && !(U32(p,0x2514)&2);
     if(ready && (move_scope(p) || early_attack) && U8(p,0x2505)!=2 && !(U8(p,0x2515)&4)){
         const u32 *header=clip(p,0x5f0);
         if(!header || header[2]!=245 || header[3]!=0xffffffffu)return 0;
         aim_draw(p);
         if(!finish_for_stance(p))return 0;
         helm_move.player=p;helm_move.active=follow.queued;
-        helm_move.owner=U32(p,0x13c4);helm_move.actor=U8(p,0x1054);consume_helm(p);return 1;
+        helm_move.owner=U32(p,0x13c4);helm_move.actor=U8(p,0x1054);consume_helm(p);if(early_attack)consume_x(p);return 1;
     }
     if(!stance && !(ready && idle(p) && U8(p,5)==1 && U16(p,0x4b4)==0x501))return 0;
     return helm_thrust_commit(p);

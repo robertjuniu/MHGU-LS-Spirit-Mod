@@ -144,7 +144,7 @@ def main():
     ips.extend(b'EEOF');(exefs/(m['module_id']+'.ips')).write_bytes(ips)
     (PACKAGE/'LEIA-ME.txt').write_bytes((ROOT/'INSTALACAO.md').read_bytes())
     assert baseline.nso_info(header+payload)['image_size']==0x2c000, 'Do not shift other addon module bases'
-    manifest=dict(prototype='v1.0.1-performance-release',diagnostics=False,addon_name='MHGU LS Spirit Mod',helm_breaker_stage='thrust_takeoff_airborne_descent_landing_seven_native_impacts',diagnostic_only=False,title_id=m['title_id'],module_id=m['module_id'],main_sha256=m['main_sha256'],
+    manifest=dict(prototype='v1.0.2-performance-release',diagnostics=False,addon_name='MHGU LS Spirit Mod',helm_breaker_stage='thrust_takeoff_airborne_descent_landing_seven_native_impacts',diagnostic_only=False,title_id=m['title_id'],module_id=m['module_id'],main_sha256=m['main_sha256'],
         baseline='R38',hooks=21,code_hooks=19,vtable_hooks=2,cave_bytes=528,forge_required=False,gameplay_verified=False,
         patch_ranges=[dict(rva=at,bytes=len(b)) for at,b in records],elf_symbols=symbols,dynamic_relocations=relocs,
         baseline_source_hash='8af54207fdfb85dc0fe4c5a3c6207c74e7749b13f07a9bfc26f0f269308d2916',runtime_source_hash=sha((ROOT/'src/runtime.c').read_bytes()),

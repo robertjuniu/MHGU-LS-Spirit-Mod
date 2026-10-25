@@ -1,15 +1,15 @@
-# Desempenho e validação da v1.0.1
+# Desempenho e validação da v1.0.2
 
 Esta versão consolida o comportamento aprovado do P17 e reduz trabalho desnecessário.
 
 | Medida local | P17 | v1.0.1 |
 |---|---:|---:|
-| Instruções A32,100 chamadas de entrada em idle | 33.800 | 28.100 |
+| Instruções A32,100 chamadas de entrada em idle | 33.800 | 28.500 |
 | Instruções A32,100 aplicações repetidas da pose em idle | 111.100 | 33.700 |
 | Tamanho total dos10 ARC | 10.122.388 bytes | 6.843.583 bytes |
 | Membros ativos comparados nos ARC | 243 | 243, mesmos bytes comprimidos |
 
-Reduções nas rotinas medidas:16,86% e69,67%. Foram retirados3.278.805 bytes de
+Reduções nas rotinas medidas:15,68% e69,67%. Foram retirados3.278.805 bytes de
 payloads comprimidos antigos já substituídos. Esse espaço não continha recursos
 ativos. Cabeçalhos e flags dos membros, clips, eventos, animações e hitboxes foram
 preservados; só os offsets externos dos payloads mudaram.
@@ -36,7 +36,7 @@ que retirar dados antigos reduz a memória de animações que o jogo precisa usa
 
 ## Validação e limites
 
-83.532 verificações C/Wasm, suites ARM de entrada, pose, vínculo, física, colisão,
+84.018 verificações C/Wasm, suites ARM de entrada, pose, vínculo, física, colisão,
 trajetória, impactos, efeitos e Foresight passaram. O comparativo nativo da arma
 mantém240 casos, erro máximo zero, mais quatro testes de restauração após troca e
 três do caminho rápido de idle. Fixtures não comprovam renderização ou dano real.
@@ -66,3 +66,16 @@ a arma. B cancela o pedido. Foram acrescentados75 casos, incluindo seis estilos,
 recuperação, X segurado, chegada separada de Y/ZR e cancelamento do buffer.
 Os dez ARC continuam idênticos aos da v1.0.0. A falha foi reproduzida em teste
 antes da correção; a confirmação visual da atualização depende do usuário.
+
+## Correção v1.0.2 — sequência rápida X → ZR+Y
+
+O pedido do Helm agora é guardado mesmo quando o Iai duplo ainda aguarda
+sua primeira inicialização de animação. Não exige que os botões continuem
+segurados até o fim dos dois cortes. Após X normal, a janela inicial já
+permitida aceita X ainda segurado e consome Y que chegue antes de ZR.
+Ataques nativos avançados, estados inválidos e dano não são roubados.
+Foram acrescentados54 casos reproduzindo os dois caminhos em seis estilos.
+A falha do buffer anterior à inicialização foi reproduzida antes da correção.
+Os diagnósticos continuam desligados e os dez ARC não mudaram. O grafo de
+código estava indisponível nesta revisão; foram verificadas as fontes e
+os testes diretamente. A sequência real precisa da confirmação do usuário.

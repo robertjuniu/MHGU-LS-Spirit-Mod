@@ -1,7 +1,7 @@
 {
   "smallIaiCases": 148,
   "smallIaiScope": "compiled C with mocked engine boundaries; pose separately executed as A32",
-  "helmThrustCases": 215,
+  "helmThrustCases": 269,
   "helmScope": "isolated thrust with airborne clips absent; air sequence tested separately; native boundaries mocked",
   "helmAirCases": 76,
   "helmAirScope": "compiled runtime and native physics/request boundaries mocked; no device trajectory claim",
@@ -28,7 +28,7 @@
   "exitPoseCases": 124,
   "exitReadinessCases": 18,
   "exitTimeCases": 1001,
-  "checks": 83532,
+  "checks": 84018,
   "cancel7Cases": 16,
   "completionCases": 37,
   "audioCases": 40,

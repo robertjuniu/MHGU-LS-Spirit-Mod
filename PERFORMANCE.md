@@ -1,15 +1,15 @@
-# Desempenho e validação da v1.0.0
+# Desempenho e validação da v1.0.1
 
 Esta versão consolida o comportamento aprovado do P17 e reduz trabalho desnecessário.
 
-| Medida local | P17 | v1.0.0 |
+| Medida local | P17 | v1.0.1 |
 |---|---:|---:|
-| Instruções A32,100 chamadas de entrada em idle | 33.800 | 28.300 |
+| Instruções A32,100 chamadas de entrada em idle | 33.800 | 28.100 |
 | Instruções A32,100 aplicações repetidas da pose em idle | 111.100 | 33.700 |
 | Tamanho total dos10 ARC | 10.122.388 bytes | 6.843.583 bytes |
 | Membros ativos comparados nos ARC | 243 | 243, mesmos bytes comprimidos |
 
-Reduções nas rotinas medidas:16,27% e69,67%. Foram retirados3.278.805 bytes de
+Reduções nas rotinas medidas:16,86% e69,67%. Foram retirados3.278.805 bytes de
 payloads comprimidos antigos já substituídos. Esse espaço não continha recursos
 ativos. Cabeçalhos e flags dos membros, clips, eventos, animações e hitboxes foram
 preservados; só os offsets externos dos payloads mudaram.
@@ -36,7 +36,7 @@ que retirar dados antigos reduz a memória de animações que o jogo precisa usa
 
 ## Validação e limites
 
-82.038 verificações C/Wasm, suites ARM de entrada, pose, vínculo, física, colisão,
+83.532 verificações C/Wasm, suites ARM de entrada, pose, vínculo, física, colisão,
 trajetória, impactos, efeitos e Foresight passaram. O comparativo nativo da arma
 mantém240 casos, erro máximo zero, mais quatro testes de restauração após troca e
 três do caminho rápido de idle. Fixtures não comprovam renderização ou dano real.
@@ -56,3 +56,13 @@ sons e efeitos. Coeficientes do Helm8/10/12/15 seguem as tabelas originais.
 As diferenças deliberadas do port incluem entradas antecipadas, bloqueio de A na
 postura, recuperação para idle, tolerância maior das duas cápsulas em solo e o ritmo
 de queda/corte calibrado pelo usuário. Não é anunciado como reprodução100% literal.
+
+## Correção v1.0.1
+
+ZR+Y agora continua o Iai Slash duplo para Helm após o fim da segunda janela
+de impacto no quadro36. Uma pressão anterior fica no buffer do próprio movimento;
+X ainda segurado não bloqueia a combinação e Y isolado não escapa para guardar
+a arma. B cancela o pedido. Foram acrescentados75 casos, incluindo seis estilos,
+recuperação, X segurado, chegada separada de Y/ZR e cancelamento do buffer.
+Os dez ARC continuam idênticos aos da v1.0.0. A falha foi reproduzida em teste
+antes da correção; a confirmação visual da atualização depende do usuário.

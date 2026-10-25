@@ -6,8 +6,8 @@ PRIOR=ROOT/'reference'
 def main():
     build=ROOT/'build';build.mkdir(exist_ok=True)
     (ROOT/'research').mkdir(exist_ok=True)
-    source=Path(os.environ.get('MHGU_LS_ADDON',str(ROOT/'inputs/MHGU_LS_Spirit_Mod_v1.0.0.zip')))
-    assert hashlib.sha256(source.read_bytes()).hexdigest()=='f79041b64e56eeb895d87455a17c36443cef6996eb0b25c5202faf16f6711c02','Wrong released input ZIP'
+    source=Path(os.environ.get('MHGU_LS_ADDON',str(ROOT/'inputs/MHGU_LS_Spirit_Mod_v1.0.1.zip')))
+    assert hashlib.sha256(source.read_bytes()).hexdigest()=='74841d5132507839f3d5737a570276bef7a696430ee7e2ed23c1a129b007b5b3','Wrong released input ZIP'
     expected=json.loads((ROOT/'validation/release-files.json').read_text())
     with zipfile.ZipFile(source) as z:
         for rel,digest in expected.items():

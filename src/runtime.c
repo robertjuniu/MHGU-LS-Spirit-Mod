@@ -97,6 +97,7 @@ static int foresight_commit(void *);
 static int foresight_start(void *,u32,u32,u32);
 static void foresight_tick(void *);
 static void foresight_release(void *);
+static void small_contact(void *);
 #ifndef IAI_HOST_TEST
 #include "foresight_data.h"
 extern const float *small_tables_cell;
@@ -839,6 +840,19 @@ static int helm_thrust_commit(void *p) {
     return 1;
 }
 static int helm_thrust_start(void *p,u32 held,u32 previous,u32 pressed) {
+    if(state.active && state.player==p && state.slash==2){
+        if(!current(p))return 0;
+        consume_y(p);
+        float frame=F32(p,0x500);
+        if(!state.started || state.exiting || !__builtin_isfinite(frame) || frame<0 ||
+           !(U8(p,0x2749)&1) || U8(p,0x2505)==2 || (U8(p,0x2515)&4))return 0;
+        /* X may still be held; keep both Iai hit windows before the continuation. */
+        if((held&0x9d0)==0x810 && (previous&0x810)!=0x810 && (pressed&0x810))state.combo_buffer|=4;
+        if((state.combo_buffer&4) && frame>=36 && !(held&0x80) && !guard.depth){
+            small_contact(p);consume_x(p);return helm_thrust_commit(p);
+        }
+        return 0;
+    }
     /* shortcut: native attack cancels remain gated separately from locomotion. */
     if((held&0x9f0)!=0x810 || (previous&0x810)==0x810 || !(pressed&0x810) ||
        !(U8(p,0x2749)&1) || (U32(p,0x2500)&1) ||

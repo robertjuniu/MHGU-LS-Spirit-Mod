@@ -9,8 +9,11 @@
   "new_hooks": 0,
   "patch_ranges_unchanged": true,
   "module_span": "0x2c000",
-  "regression_checks": 82038,
+  "regression_checks": 83532,
   "native_idle_cache_cases": 3,
   "runtime_diagnostics": false,
-  "device_fps_measured": false
+  "device_fps_measured": false,
+  "romfs_identical_to_v100": true,
+  "helm_cases": 215,
+  "small_to_helm_regressions": 75
 }

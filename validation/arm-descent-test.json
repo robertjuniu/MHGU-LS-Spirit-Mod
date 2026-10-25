@@ -1,0 +1,14 @@
+{
+  "scheduler_max_abs_error": 1.9073486328125e-06,
+  "charge_commit_cases": 28,
+  "terrain_oracle_cases": 18,
+  "physics_oracle_cases": 48,
+  "point_oracle_cases": 15,
+  "native_shell_cases": 8,
+  "native_sound_cases": 4,
+  "seven_cut_scheduler_oracle_cases": 16,
+  "scheduler_transform": "Live contacted part translates in three axes and rotates at every sampled frame; all seven positions compared with NRO9BE4",
+  "intentional_adaptation": "F6 fall duration20.9 updates, active animation rate1/1.1; source duration6/rate3.1666667 retained as oracle with explicit differences. Color charge deferred from initialization to downward launch frame8",
+  "scope": "NRO75C4/BACC with explicitly allowed timing differences; unchanged NRO993C/6D5C/sound/scheduler versus compiled A32; native boundaries are fixtures; VFX excluded",
+  "gameplay_verified": false
+}

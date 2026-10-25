@@ -1,0 +1,16 @@
+{
+  "archives": 10,
+  "compressed_members_identical": 243,
+  "arc_bytes_before": 10122388,
+  "arc_bytes_after": 6843583,
+  "bytes_removed": 3278805,
+  "saving_percent": 32.39,
+  "hooks": 21,
+  "new_hooks": 0,
+  "patch_ranges_unchanged": true,
+  "module_span": "0x2c000",
+  "regression_checks": 82038,
+  "native_idle_cache_cases": 3,
+  "runtime_diagnostics": false,
+  "device_fps_measured": false
+}

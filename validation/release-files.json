@@ -1,0 +1,15 @@
+{
+  "LEIA-ME.txt": "b2354079838d8ee13191c84d5108587cc4f1307fa52f9b76496705cca5139ca3",
+  "exefs/FB08F1D20FD1204FE7070672777F869B00000000000000000000000000000000.ips": "bce5692fd6d314a25c2190aff2777af9ae15c32f1ea0390f7b255220d0e68dbf",
+  "exefs/subsdk1": "5f324f218c9ccb0cd000bab77615acea4614fed5ebaf155cc70d969f31133211",
+  "romfs/nativeNX/arc/forge/fix40_effects.arc": "6a323662f514a0016f9b3f725113a6993d35ab86bd1187b6f382edac619a52d9",
+  "romfs/nativeNX/arc/player/quest/w07.arc": "25dee8485b52a69895d991d6a7a633c8da894ac0af9bf47ec2099eb1b38af69b",
+  "romfs/nativeNX/arc/weapon/w07/g00.arc": "2e97495b6ac5406f992c768ca6d61e4e67f5f7fb0a6023210b3aa6cd3be1c42f",
+  "romfs/nativeNX/arc/weapon/w07/g01.arc": "359ba9875edea137787999de56660533ca8b4ba2e161872bc3ec3e4dca4bd7b1",
+  "romfs/nativeNX/arc/weapon/w07/g02.arc": "a394c558ce7a530d1ef598ec987e154b6fb11225ba94c3e61e5096503e7b5a63",
+  "romfs/nativeNX/arc/weapon/w07/g04.arc": "84f79185d2e75bb7f0faec505615099a4904307f8f17d4a042d0c13208d03059",
+  "romfs/nativeNX/arc/weapon/w07/g07.arc": "0e31dd992968c31e54f159d4529dc5f20a69fe157ffe63f5f7930c17eb76b4e8",
+  "romfs/nativeNX/arc/weapon/w07/g08.arc": "8d7cd967af28f90cc9fe895512ee4d0bbbbfddb2aab0adb3d4d55db75e015d5f",
+  "romfs/nativeNX/arc/weapon/w07/g10.arc": "2595ea7d16d2824382cfdcc863bb9447613660f414d99049e4d1c4269485f060",
+  "romfs/nativeNX/arc/weapon/w07/g11.arc": "4cee5b300a71bfe1ff63b3000c623d5ee091460c88c3db8c7c2a53b63ec81d9f"
+}

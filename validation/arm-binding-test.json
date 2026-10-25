@@ -1,0 +1,9 @@
+{
+  "idle_cache_cases": 3,
+  "repeated_application_cases": 4,
+  "cases": 240,
+  "foresight_binding_cases": 60,
+  "max_abs_error": 0,
+  "scope": "original NRO7A94 versus standalone A32 attachment and layer selection, including Foresight; resource availability and native rendering are fixtures",
+  "gameplay_verified": false
+}

@@ -1,0 +1,32 @@
+{
+  "before": {
+    "input_idle": {
+      "instructions": 33800,
+      "calls": 100,
+      "debug_events": 0
+    },
+    "idle_weapon": {
+      "instructions": 111100,
+      "calls": 100,
+      "debug_events": 0
+    }
+  },
+  "after": {
+    "input_idle": {
+      "instructions": 28300,
+      "calls": 100,
+      "debug_events": 0
+    },
+    "idle_weapon": {
+      "instructions": 33700,
+      "calls": 100,
+      "debug_events": 0
+    }
+  },
+  "reduction_percent": {
+    "input_idle": 16.27,
+    "idle_weapon": 69.67
+  },
+  "scope": "100 identical calls after warmup, Unicorn A32, native services are explicit fixtures; no FPS, thermal or power claim",
+  "gameplay_verified": false
+}

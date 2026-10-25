@@ -9,13 +9,16 @@
   "new_hooks": 0,
   "patch_ranges_unchanged": true,
   "module_span": "0x2c000",
-  "regression_checks": 84018,
+  "regression_checks": 84738,
   "native_idle_cache_cases": 3,
   "runtime_diagnostics": false,
   "device_fps_measured": false,
   "romfs_identical_to_v100": true,
-  "helm_cases": 269,
+  "helm_cases": 428,
   "small_to_helm_regressions": 75,
   "quick_input_regressions": 54,
-  "romfs_identical_to_v101": true
+  "romfs_identical_to_v101": true,
+  "native_attack_progress_new_cases": 159,
+  "romfs_identical_to_v102": true,
+  "author_dispatch_cases": 96
 }

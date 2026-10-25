@@ -1,0 +1,6 @@
+{
+  "author_dispatch_cases": 96,
+  "negative_gate_cases": 2,
+  "scope": "Actual NRO10B8; native weapon-mode query and accepted request AF0 are fixtures. Confirms no six-frame or phase1-only restriction for these initialized ground attack contexts",
+  "gameplay_verified": false
+}

@@ -1,4 +1,4 @@
-# MHGU LS Spirit Mod — v1.0.2
+# MHGU LS Spirit Mod — v1.0.3
 
 MHGU 1.4.0 • Title ID 0100770008DD8000 • Eden Android / Nintendo Switch
 
@@ -20,11 +20,14 @@ Monster Hunter e os recursos do jogo pertencem à CAPCOM.
    mesmo mod. Não deixe dois addons de Long Sword ativos simultaneamente.
 4. Ative o addon e inicie MHGU 1.4.0. Não use estes offsets em outra versão.
 
-## Correção v1.0.2
+## Correção v1.0.3
 
-A entrada muito rápida de ZR+Y agora é guardada mesmo antes de a animação
-do Iai inicializar. Após um X normal, X ainda segurado e Y chegando antes
-de ZR também são tratados na janela inicial permitida.
+ZR+Y agora é aceito durante o ataque X normal já inicializado, incluindo
+quadros avançados e a segunda fase da ação. Foi removido o limite de seis
+quadros imposto pelo port; o dispatcher original do autor foi executado
+para confirmar esse comportamento em96 casos. Y sozinho continua disponível
+para guardar a arma. Dano, estados aéreos e transições já pendentes continuam
+protegidos. As correções de entrada rápida do Iai duplo permanecem.
 
 ## Continuação do Iai duplo
 

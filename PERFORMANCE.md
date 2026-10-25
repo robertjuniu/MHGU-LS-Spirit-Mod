@@ -1,4 +1,4 @@
-# Desempenho e validação da v1.0.2
+# Desempenho e validação da v1.0.3
 
 Esta versão consolida o comportamento aprovado do P17 e reduz trabalho desnecessário.
 
@@ -36,7 +36,7 @@ que retirar dados antigos reduz a memória de animações que o jogo precisa usa
 
 ## Validação e limites
 
-84.018 verificações C/Wasm, suites ARM de entrada, pose, vínculo, física, colisão,
+84.738 verificações C/Wasm, suites ARM de entrada, pose, vínculo, física, colisão,
 trajetória, impactos, efeitos e Foresight passaram. O comparativo nativo da arma
 mantém240 casos, erro máximo zero, mais quatro testes de restauração após troca e
 três do caminho rápido de idle. Fixtures não comprovam renderização ou dano real.
@@ -79,3 +79,27 @@ A falha do buffer anterior à inicialização foi reproduzida antes da correçã
 Os diagnósticos continuam desligados e os dez ARC não mudaram. O grafo de
 código estava indisponível nesta revisão; foram verificadas as fontes e
 os testes diretamente. A sequência real precisa da confirmação do usuário.
+
+## Correção v1.0.3 — X normal e progresso da ação
+
+O usuário esclareceu que a falha era X normal, não o Iai Slash. Os logs públicos
+coletados não têm telemetria de comandos; não são usados para afirmar em qual
+quadro houve a tentativa. O código do port ainda limitava Helm aos primeiros
+seis quadros e à fase1 de um ataque nativo. As versões anteriores corrigiram
+outros caminhos de entrada, sem remover essa restrição.
+
+Foi executado o dispatcher real NRO10B8:96 casos em seis ações nativas, duas
+fases inicializadas e oito quadros0..137 solicitam F3, inclusive6.01,40 e137.
+Dois gates negativos continuam rejeitando. Consulta do modo de arma e o pedido
+aceito AF0 são fixtures explícitas. O port passa a aceitar os ataques nativos
+em solo pelo mesmo contexto, conservando as proteções de dono, transição,
+dano, voo e guarda. Y sozinho continua nativo após o ataque normal.
+
+Regressão ampliada para428 casos de Helm; o teste que exigia rejeitar após
+seis quadros foi corrigido porque codificava uma restrição do port, não do
+autor. A execução da versão anterior falha na nova comparação após6.01.
+
+A medição após esta correção permanece28.500 instruções por100 chamadas idle
+e33.700 para a pose repetida, como na v1.0.2. Nenhum ARC, hitbox ou efeito mudou;
+nenhum hook ou recurso permanente foi acrescentado. Não há ganho de FPS/bateria
+medido no celular. A sequência real aguarda confirmação do usuário.
